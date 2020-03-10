@@ -7,14 +7,13 @@
 
 Adafruit_BME280 bme;
 WiFiClient client;
-
-float temperature, humidity, pressure;
+WebServer server(80);
 
 #include <secrets.h>
 
-WebServer server(80);
+float temperature, humidity, pressure;
 
-String SendHTML()
+void handle_OnConnect()
 {
   String ptr = "<!DOCTYPE html> <html>\n";
   ptr += "<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
@@ -39,13 +38,7 @@ String SendHTML()
   ptr += "</div>\n";
   ptr += "</body>\n";
   ptr += "</html>\n";
-  return ptr;
-}
-
-void handle_OnConnect()
-{
-
-  server.send(200, "text/html", SendHTML());
+  server.send(200, "text/html", ptr);
 }
 
 void handle_NotFound()
