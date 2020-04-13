@@ -4,12 +4,11 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
 #include <ThingSpeak.h>
+#include <secrets.h>
 
 Adafruit_BME280 bme;
 WiFiClient client;
 WebServer server(80);
-
-#include <secrets.h>
 
 float temperature, humidity, pressure;
 
